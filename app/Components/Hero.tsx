@@ -8,7 +8,7 @@ const Hero = () => {
         <div className='h-auto w-full'>
             <div className='pt-28 md:pt-12  pb-8 w-full flex flex-col gap-y-6 text-center md:flex-row md:gap-x-32 md:max-w-4xl mx-auto'>
                 {/* Cards Image*/}
-                <Image src="/images/LandingPageCards.png" alt="cards" height={210} width={210} className='place-self-center md:ml-8'/>
+                <Image src="/images/LandingPageCards.png" alt="cards" height={220} width={220} className='place-self-center md:ml-8'/>
                 {/* Alfred Cards portion */}
                 <div className='space-y-5 pt-14'>
                 <h1 className="text-white tracking-wider font-medium text-2xl">Alfred Cards</h1>
