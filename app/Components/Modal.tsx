@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Dialog,
   DialogContent,
@@ -52,10 +51,10 @@ export function Modal() {
   return (
     <>
       {/* Generate Button */}
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-16">
         <button
           onClick={handleGenerateClick}
-          className="bg-slate-900 hover:bg-slate-600 text-white rounded-lg px-4 py-2"
+          className="hover:bg-slate-900 bg-slate-600 text-white rounded-lg px-4 py-2"
         >
           Generate Flashcard
         </button>
