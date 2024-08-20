@@ -16,7 +16,7 @@ import flashCard from "@/types";
 
 export async function getAllFlashCardsByUserId(userid: string): Promise<flashCard[]> {
     try {
-        const flashcardData = await fetch(`http://localhost:3000/api/flashCards?userid=${userid}`);
+        const flashcardData = await fetch(`https://alfredcards.vercel.app/api/flashCards?userid=${userid}`);
 
         if (!flashcardData.ok) {
             throw new Error("Error in getAllFlashCardsByUserId Function");
@@ -41,7 +41,7 @@ export async function handleAddFlashCard(userid:string,flashcardColor:string,fla
      flashcardtitle:flashcardTitle
     }
     
-    const flashcardData = await fetch(`http://localhost:3000/api/flashCards`, {
+    const flashcardData = await fetch(`https://alfredcards.vercel.app/api/flashCards`, {
         method : "POST",
         headers : {
         "Content-Type" :"application/json"
@@ -58,7 +58,7 @@ export async function handleAddFlashCard(userid:string,flashcardColor:string,fla
 
 
 export async function handleDelete(userid:string){
- const res = await fetch(`http://localhost:3000/api/flashCards?userid=${userid}`,{
+ const res = await fetch(`https://alfredcards.vercel.app/api/flashCards?userid=${userid}`,{
     method: "DELETE"
  })
  
