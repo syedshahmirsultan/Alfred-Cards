@@ -3,7 +3,7 @@ import {sql} from '@vercel/postgres'
 import { pgTable,varchar } from 'drizzle-orm/pg-core'
 import { InferModel } from 'drizzle-orm'
 
-export const flashCardTable = pgTable("flashcardstable", {
+export const flashCardTable = pgTable("alfredcardstable", {
     userid: varchar('userid', { length: 255 }).notNull(),
     flashcardcolor: varchar('flashcardcolor', { length: 255 }).notNull(),
     flashcardtext: varchar('flashcardtext', { length: 255 }).notNull(),

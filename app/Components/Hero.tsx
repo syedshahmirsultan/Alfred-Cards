@@ -11,8 +11,8 @@ const Hero = () => {
                 <Image src="/images/LandingPageCards.png" alt="cards" height={220} width={220} className='place-self-center md:ml-8'/>
                 {/* Alfred Cards portion */}
                 <div className='space-y-5 pt-14'>
-                <h1 className="text-white tracking-wider font-medium text-2xl">Alfred Cards</h1>
-                 <p className='text-gray-300 font-light text-md tracking-wider'>Flashcards are an easy way to <br/>organize your life</p>
+                <h1 className="text-white tracking-wider font-medium text-3xl">Alfred Cards</h1>
+                 <p className='text-gray-300 font-light text-lg tracking-wider'>Flashcards are an easy way to <br/>organize your life</p>
                 
                 {/* Buttons */}
                 <div className='flex ml-2 justify-center gap-x-4 md:gap-x-8 pt-4'>

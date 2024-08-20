@@ -8,15 +8,19 @@ import {
 } from "@/components/ui/dialog";
 import { ReactNode, useState } from "react";
 import FlashCards from "./FlashCards";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { handleAddFlashCard } from "./apiCallng";
+import {useRouter} from 'next/navigation'
+import TooltipButton from "./Tooltip";
 
-export function Modal() {
+export function Modal({user} :{user:KindeUser|null}) {
   const [flashcardTitle, setFlashCardTitle] = useState("");
   const [flashcardText, setFlashCardText] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [isTextDialogOpen, setIsTextDialogOpen] = useState(false);
   const [isColorDialogOpen, setIsColorDialogOpen] = useState(false);
-  const [isFlashCardVisible, setIsFlashCardVisible] = useState(false);
   const [isTitleDialogOpen, setIsTitleDialogOpen] = useState(false); // Set to false initially
+  const router = useRouter();
 
   // Handle Title Submission
   const handleTitleSubmit = (e: React.FormEvent) => {
@@ -33,10 +37,11 @@ export function Modal() {
   };
 
   // Handle Color Selection
-  const handleColorSubmit = (e: React.FormEvent) => {
+  const handleColorSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     setIsColorDialogOpen(false);
-    setIsFlashCardVisible(true); // Display the FlashCard
+   await handleAddFlashCard(user?.id as string,selectedColor,flashcardText,flashcardTitle);
+  router.refresh()
   };
 
   // Handle Generate Button Click
@@ -44,7 +49,6 @@ export function Modal() {
     setFlashCardTitle(""); // Clear previous data
     setFlashCardText("");
     setSelectedColor("");
-    setIsFlashCardVisible(false); // Hide FlashCard
     setIsTitleDialogOpen(true); // Show title dialog
   };
 
@@ -52,12 +56,14 @@ export function Modal() {
     <>
       {/* Generate Button */}
       <div className="flex justify-center mt-16">
-        <button
+        { user ? (<button
           onClick={handleGenerateClick}
           className="hover:bg-slate-900 bg-slate-600 text-white rounded-lg px-4 py-2"
         >
           Generate Flashcard
-        </button>
+        </button>) : (
+          <TooltipButton/>
+        ) }
       </div>
 
       {/* Display dialogs or FlashCard based on state */}
@@ -88,7 +94,7 @@ export function Modal() {
         </Dialog>
       )}
 
-      {isTextDialogOpen && !isFlashCardVisible && (
+      {isTextDialogOpen &&(
         <Dialog open={isTextDialogOpen} onOpenChange={setIsTextDialogOpen}>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
@@ -115,7 +121,7 @@ export function Modal() {
         </Dialog>
       )}
 
-      {isColorDialogOpen && !isFlashCardVisible && (
+      {isColorDialogOpen && (
         <Dialog open={isColorDialogOpen} onOpenChange={setIsColorDialogOpen}>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
@@ -205,15 +211,11 @@ export function Modal() {
         </Dialog>
       )}
 
-      {isFlashCardVisible && (
+       {/* {isFlashCardVisible && (  */}
         <>
-            <FlashCards
-            color={selectedColor}
-            text={flashcardText}
-            title={flashcardTitle}
-          />
+            <FlashCards user={user}/>
         </>
-      )}
+       {/* )}  */}
     </>
   );
 }

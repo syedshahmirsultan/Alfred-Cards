@@ -31,7 +31,7 @@ const NavBar = ({user}: {user:KindeUser|null}) => {
             : (<LogoutLink className='hover:text-white text-sm'>Log out</LogoutLink>
             )
            }
-    <Link href="" className='hover:text-white text-sm'>About us</Link>
+    <Link href="about" className='hover:text-white text-sm'>About us</Link>
     <Link href="/create" className='hover:text-white text-sm'>Create</Link>
 
 
